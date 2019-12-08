@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Student List Here</title>
+</head>
+
+<body>
+<h1> Student Information </h1>
+		
+<table>
+		<tr>
+			<td th:text="${student.studentId}" ></td>
+			<td th:text="${student.firstName}+' '+${student.middleName}+' '+${student.surname}"></td>
+			<td th:text="${student.age}" ></td>
+			<td th:text="${student.gender}" ></td>
+			<td th:text="${student.email}" ></td>
+			<td th:text="${student.mobileNum}" ></td>
+			<td><a href="EditStudent.html"
+				th:href="@{/admin/edit/}+${student.studentId}"> Edit </a>
+			</td>
+			<td><a href="DeleteStudent.html"
+				th:href="@{/admin/delete/}+${student.studentId}">Delete</a></td>
+		</tr>
+</table>
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+
+<form th:action="@{/admin/studentlist}">
+<input type="text" th:name="name"/> 
+<input type="submit"/> 
+</form>
+
+
+<p><a th:href="@{/student/home}">Home</a></p>
+
+</body>
+</html>

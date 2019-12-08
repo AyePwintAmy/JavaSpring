@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<h1> Student Information</h1>
+		<fieldset>
+			<table>
+				<tr>
+					<td th:text="${student.studentId}" ></td>
+					<td th:text="${student.firstName}+' '+${student.middleName}+' '+${student.surname}"></td>
+					<td th:text="${student.age}" ></td>
+					<td th:text="${student.gender}" ></td>
+					<td th:text="${student.email}" ></td>
+					<td th:text="${student.mobileNum}" ></td>
+					<td><a href="editStudent.html"
+						th:href="@{/student/edit/}+${student.studentId}"> Edit </a>
+					</td>
+					
+				</tr>
+			</table>
+		</fieldset>
+		<div th:insert="~{studentCourseForm::listHeaderField}">
+		
+			<h2>All Applied Courses Listing Table</h2>
+		</div>
+		
+				<table>
+				<div th:fragment="listbodyField">
+						<tr align="center">
+							<td>Department</td>
+							<td>Course Code</td>
+							<td>Course Name</td>
+							<td>Course StartDate</td>
+							<td>Course End Date</td>
+							<td>Course Unit</td>
+							<td>Course Size</td>
+							<td>Status</td>
+							<td>Student ID</td>
+						</tr>
+						<tr align="center" th:each="ca: ${courseLists}">
+							<td th:text="${ca.course.department.departmentName}" ></td>
+							<td th:text="${ca.course.courseCode}" ></td>
+							<td th:text="${ca.course.courseName}" ></td>
+							<td th:text="${ca.course.courseStart}" ></td>
+							<td th:text="${ca.course.courseEnd}" ></td>
+							<td th:text="${ca.course.courseUnit}" ></td>
+							<td th:text="${ca.course.courseSize}" ></td>
+							<td th:text="${ca.status}" ></td>
+							<td th:text="${ca.student.studentId}" ></td>
+										
+						</tr>
+					</div>
+				<div th:insert="~{studentCourseForm::listbuttonField}">
+					<tr>
+					<td><a th:href="@{/student2/home/}"> Show All Courses </a>
+					</td>
+					</tr>
+				</div>
+			</table>
+</body>
+</html>
